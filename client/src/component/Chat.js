@@ -6,8 +6,9 @@ import { useHistory } from 'react-router-dom'
 var socket
 function Chat(props) {
     console.log(props.user)
+    console.log(props.match.params.id)
     const [ user, setUser ] = useState(props.user)
-    const [ room, setRoom ] = useState("room")
+    const [ room, setRoom ] = useState(props.match.params.id)
     const [ message, setMessage ] = useState('')
     const [ messages, setMessages ] = useState([])
     const history = useHistory();
@@ -22,7 +23,6 @@ function Chat(props) {
 
     useEffect(() => {
         socket = io.connect(ENDPOINT, connectionOptions);
-
         socket.emit('join',  ({ user, room }), () => {
         })
 

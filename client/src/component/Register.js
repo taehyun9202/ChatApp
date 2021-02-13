@@ -53,7 +53,7 @@ function Register() {
                 />
                 <button type="submit">Register</button>
             </form>
-            <Link to='/login'>
+            <Link to='/'>
                 <h5>Already have an accout?</h5>
             </Link>
         </div>

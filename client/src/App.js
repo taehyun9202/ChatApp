@@ -29,20 +29,26 @@ function App() {
   return (
     <div className="app">
       <Router>
-        { loggedInUser ? 
-          <Route path="/" exact>
-            <Join user={loggedInUser} />
-          </Route> :
-          <Route path="/login" exact>
+        <Route path="/" exact>
+          { loggedInUser ?
+            <Join user={loggedInUser} /> :
             <Login />
-          </Route>
-        }
-        <Route path={`/chat`} exact>
-            <Chat user={loggedInUser} room={room} />
+          }
         </Route>
+        <Route
+          exact
+          path="/chat/:id"
+          render={(props) => (
+            <Chat {...props} user={loggedInUser} />
+          )}
+        />
+          {/* <Chat user={loggedInUser} room={room} /> */}
         <Route path="/register" exact>
+          { loggedInUser ?
+            <Join user={loggedInUser} /> :
             <Register />
-          </Route>
+          }
+        </Route>
       </Router>
     </div>
   );
